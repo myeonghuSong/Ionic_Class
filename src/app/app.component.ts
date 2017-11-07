@@ -1,52 +1,49 @@
 import { Component, ViewChild } from '@angular/core';
-
-import { Platform, MenuController, Nav } from 'ionic-angular';
-
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
-import { ListPage } from '../pages/list/list';
-
+import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+import { AnswerPage } from '../pages/answer/answer';
+
+import { PoolingPage } from '../pages/pooling/pooling';
+import { PoolingResultPage } from '../pages/pooling-result/pooling-result';
+
+import { MainPage } from '../pages/main/main';
+
+
+import { QAPage } from '../pages/q-a/q-a';
+
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  @ViewChild(Nav) nav: Nav;
+  @ViewChild(Nav) navCtrl: Nav;
+    rootPage:any = MainPage;
 
-  // make HelloIonicPage the root (or first) page
-  rootPage = HelloIonicPage;
-  pages: Array<{title: string, component: any}>;
-
-  constructor(
-    public platform: Platform,
-    public menu: MenuController,
-    public statusBar: StatusBar,
-    public splashScreen: SplashScreen
-  ) {
-    this.initializeApp();
-
-    // set our app's pages
-    this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
-      { title: 'My First List', component: ListPage }
-    ];
-  }
-
-  initializeApp() {
-    this.platform.ready().then(() => {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+    platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      statusBar.styleDefault();
+      splashScreen.hide();
     });
   }
-
-  openPage(page) {
-    // close the menu when clicking a link from the menu
-    this.menu.close();
-    // navigate to the new page if it is not the current page
-    this.nav.setRoot(page.component);
+  goToQA(params){
+    if (!params) params = {};
+    this.navCtrl.setRoot(QAPage);
+  }goToAnswer(params){
+    if (!params) params = {};
+    this.navCtrl.setRoot(AnswerPage);
+  }goToPooling(params){
+    if (!params) params = {};
+    this.navCtrl.setRoot(PoolingPage);
+  }goToPoolingResult(params){
+    if (!params) params = {};
+    this.navCtrl.setRoot(PoolingResultPage);
+  }goToMain(params){
+    if (!params) params = {};
+    this.navCtrl.setRoot(MainPage);
   }
 }

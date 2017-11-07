@@ -1,11 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { QAPage } from '../pages/q-a/q-a';
+import { PoolingPage } from '../pages/pooling/pooling';
+import { MainPage } from '../pages/main/main';
+import { AnswerPage } from '../pages/answer/answer';
+import { PoolingResultPage } from '../pages/pooling-result/pooling-result';
 
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
-import { ItemDetailsPage } from '../pages/item-details/item-details';
-import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -13,20 +15,24 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 @NgModule({
   declarations: [
     MyApp,
-    HelloIonicPage,
-    ItemDetailsPage,
-    ListPage
+    QAPage,
+    PoolingPage,
+    MainPage,
+    AnswerPage,
+    PoolingResultPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HelloIonicPage,
-    ItemDetailsPage,
-    ListPage
+    QAPage,
+    PoolingPage,
+    MainPage,
+    AnswerPage,
+    PoolingResultPage
   ],
   providers: [
     StatusBar,
