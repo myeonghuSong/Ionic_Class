@@ -7,7 +7,6 @@ import { AnswerPage } from '../pages/answer/answer';
 
 import { PoolingPage } from '../pages/pooling/pooling';
 import { PoolingResultPage } from '../pages/pooling-result/pooling-result';
-
 import { MainPage } from '../pages/main/main';
 
 
