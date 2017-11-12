@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database-deprecated';
+import { AngularFireDatabase} from 'angularfire2/database';
+import { FirebaseListObservable } from 'angularfire2/database-deprecated';
+import { AngularFireList } from 'angularfire2/database';
 
 @Component({
   selector: 'page-main',
@@ -9,9 +11,13 @@ import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/databas
 
 export class MainPage {
 
-  rooms: FirebaseListObservable<any[]>;
+  rooms: AngularFireList<any>;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public af: AngularFireDatabase) {
+
+    this.rooms = af.list('/');
+
+    console.log(this.rooms);
   }
 
 }
