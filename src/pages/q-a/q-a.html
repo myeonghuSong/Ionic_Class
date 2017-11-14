@@ -19,5 +19,10 @@
     <ion-item color="none" on-click="goToAnswer()" id="qA-list-item9">
       3. How are you today?
     </ion-item>
+    <ion-item-sliding *ngFor="let question of questions | async">  
+      <ion-item color="none" on-click="goToAnswer()" id="qA-list-item9"> 
+        {{question.questionName}}   
+      </ion-item>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>

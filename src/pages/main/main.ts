@@ -11,7 +11,7 @@ import { AngularFireList } from 'angularfire2/database';
 
 export class MainPage {
 
-  rooms: AngularFireList<any>;
+  rooms: AngularFireList<(any[])>;
 
   constructor(public navCtrl: NavController, public af: AngularFireDatabase) {
 

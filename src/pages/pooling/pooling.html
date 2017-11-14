@@ -19,5 +19,10 @@
     <ion-item color="none" on-click="goToPoolingResult()" id="pooling-list-item15">
       3. Very simple QUIZ!
     </ion-item>
+    <ion-item-sliding *ngFor="let pooling of poolings | async">  
+      <ion-item > 
+        {{pooling.poolingName}}   
+      </ion-item>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>
