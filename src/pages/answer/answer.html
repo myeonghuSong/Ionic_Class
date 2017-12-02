@@ -10,39 +10,43 @@
 </ion-header>
 <ion-content padding id="page4">
 
-  <div id="answer-markdown1" class="show-list-numbers-and-dots">
-      <h1>Q. I need some help! Cannot run npm in my OS! </h1>
+ 
+    <div id="answer-markdown1" class="show-list-numbers-and-dots">
+      <h1>Q. {{test.questionName}} </h1>
   </div>
 
   <ion-card>
-    Hello, blablabla,<br/>
-    Therefore, this is my problem.<br/>
-    I cannot run npm services in my OS.<br/>
-    My OS is 'Ubuntu 16.04LTS'. Please help! Thanks
-  </ion-card>
+    {{test.questionContent}}<br/>
+   </ion-card>
 
+
+
+
+   <h1>Input Answer</h1>
+   <ion-list>
+      
+        <ion-item>
+          <ion-label >Answer title</ion-label>
+          <ion-input type="title" [(ngModel)]="value1"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label >Answer Content</ion-label>
+          <ion-textarea type="content" [(ngModel)]="value2"></ion-textarea>
+        </ion-item>
+  </ion-list>
+    
   <ion-buttons end>
-    <button ion-button icon-left>
+    <button ion-button icon-left (click)="addAnswer()">
       <ion-icon name="add"></ion-icon>Answer</button>
    </ion-buttons>
 
-  <h1>A1. Did you check the /src directory?</h1>
-   <ion-card>
-     Hello, blablabla,<br/>
-     Therefore, you can solve problem.<br/>
-     Good Luck
-   </ion-card>
-
-   <h1>A2. /src is not the problem!</h1>
-    <ion-card>
-      Hello, blablabla,<br/>
-      Therefore, you can solve problem.<br/>
-      Good Luck
-    </ion-card>
-    <ion-item-sliding *ngFor="let answer of answers | async"> 
-      <h1>{{answer.answerTitle}}</h1> 
-      <ion-card> 
-        {{answer.answerContent}}   
+    <ion-item-sliding *ngFor="let answer of answers | async">
+      <ion-item>
+      <h1>{{answer.answerTitle}}</h1>
+      <ion-card>
+        {{answer.answerContent}}
       </ion-card>
+    </ion-item>
     </ion-item-sliding>
 </ion-content>

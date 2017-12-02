@@ -6,8 +6,8 @@ import { QAPage } from '../pages/q-a/q-a';
 import { PoolingPage } from '../pages/pooling/pooling';
 import { MainPage } from '../pages/main/main';
 import { AnswerPage } from '../pages/answer/answer';
+import { HomePage } from '../pages/home/home';
 import { PoolingResultPage } from '../pages/pooling-result/pooling-result';
-
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
@@ -31,7 +31,8 @@ export const firebaseConfig = {
     PoolingPage,
     MainPage,
     AnswerPage,
-    PoolingResultPage
+    PoolingResultPage,
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +47,8 @@ export const firebaseConfig = {
     PoolingPage,
     MainPage,
     AnswerPage,
-    PoolingResultPage
+    PoolingResultPage,
+    HomePage
   ],
   providers: [
     StatusBar,

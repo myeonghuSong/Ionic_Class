@@ -3,4 +3,8 @@ export class pooling {
     No: any; 
     Yes: any; 
     poolingName: string;
+
+    push(pooling_value: any[]){
+        
+    }
 }

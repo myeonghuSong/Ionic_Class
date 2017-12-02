@@ -1,27 +1,25 @@
 <ion-header>
   <ion-navbar>
+
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>
-      Pooling
-    </ion-title>
+
+    <ion-title>Pooling</ion-title>
+    <ion-buttons end>
+      <button ion-button (click) = "addPooling()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
+
 </ion-header>
 <ion-content padding id="page2">
+
   <ion-list id="pooling-list3">
-    <ion-item color="none" on-click="goToPoolingResult()" id="pooling-list-item13">
-      1. Please Poll your Opinion about Class
-    </ion-item>
-    <ion-item color="none" on-click="goToPoolingResult()" id="pooling-list-item14">
-      2. Please Poll your Opinion about Homework
-    </ion-item>
-    <ion-item color="none" on-click="goToPoolingResult()" id="pooling-list-item15">
-      3. Very simple QUIZ!
-    </ion-item>
-    <ion-item-sliding *ngFor="let pooling of poolings | async">  
-      <ion-item > 
-        {{pooling.poolingName}}   
+    <ion-item-sliding *ngFor="let pooling of poolings | async" on-click="goToPoolingResult(pooling)">
+      <ion-item >
+        {{pooling.poolingName}}
       </ion-item>
     </ion-item-sliding>
   </ion-list>
