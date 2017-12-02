@@ -39,5 +39,12 @@
       Therefore, you can solve problem.<br/>
       Good Luck
     </ion-card>
-
+    <ion-item-sliding *ngFor="let answer of answers | async">
+      <ion-item>
+      <h1>{{answer.answerTitle}}</h1>
+      <ion-card>
+        {{answer.answerContent}}
+      </ion-card>
+    </ion-item>
+    </ion-item-sliding>
 </ion-content>

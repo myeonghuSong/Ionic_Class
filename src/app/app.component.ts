@@ -2,12 +2,11 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { HomePage } from '../pages/home/home';
 import { AnswerPage } from '../pages/answer/answer';
 
 import { PoolingPage } from '../pages/pooling/pooling';
 import { PoolingResultPage } from '../pages/pooling-result/pooling-result';
-
 import { MainPage } from '../pages/main/main';
 
 

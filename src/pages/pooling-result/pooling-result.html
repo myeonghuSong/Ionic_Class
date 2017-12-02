@@ -4,38 +4,26 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      Pooling Result
+      {{pooling_value.poolingName}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page5">
   <div id="poolingResult-markdown2" class="show-list-numbers-and-dots">
-    <p style="color:#000000;">
-      I like lion.
-    </p>
+    <h1>Q.<br/>&nbsp;&nbsp;&nbsp;{{pooling_value.poolingName}}</h1>
   </div>
   <ion-list id="poolingResult-list6">
     <ion-item-sliding>
-      <ion-item color="none" id="poolingResult-list-item25">
+      <ion-item color="none" id="poolingResult-list-item25" (click) = "y_pooling(pooling_value)">
         Yes
         <ion-note item-right></ion-note>
       </ion-item>
-      <ion-item-options side="left">
-        <button ion-button color="positive">
-          add
-        </button>
-      </ion-item-options>
     </ion-item-sliding>
     <ion-item-sliding>
-      <ion-item color="none" id="poolingResult-list-item26">
+      <ion-item color="none" id="poolingResult-list-item26" (click) = "n_pooling(pooling_value)">
         No
         <ion-note item-right></ion-note>
       </ion-item>
-      <ion-item-options side="left">
-        <button ion-button color="positive">
-          add //This point, duplicated!!
-        </button>
-      </ion-item-options>
     </ion-item-sliding>
   </ion-list>
 </ion-content>
