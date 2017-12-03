@@ -41,12 +41,22 @@
       <ion-icon name="add"></ion-icon>Answer</button>
    </ion-buttons>
 
-    <ion-item-sliding *ngFor="let answer of answers | async">
+   <ion-list>
+    <ion-item-sliding *ngFor="let answer of answers | async" #slidingItem>
       <ion-item>
       <h1>{{answer.answerTitle}}</h1>
       <ion-card>
         {{answer.answerContent}}
       </ion-card>
     </ion-item>
+
+    <ion-item-options side="right"> 
+    <button ion-button icon-only (click) = "removeAnswer(slidingItem, answer)" color="danger"> 
+      <ion-icon name="trash"></ion-icon>
+       
+    </button>
+  </ion-item-options>
+
     </ion-item-sliding>
+  </ion-list>
 </ion-content>

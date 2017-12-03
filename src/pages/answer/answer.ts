@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ItemSliding } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import { answer } from './answerClass';
 //import { question } from '../q-a/question';
@@ -56,6 +56,10 @@ export class AnswerPage {
     //this.poolings.create(test);
   }
 
-
+  removeAnswer(slidingItem: ItemSliding, answer: answer)
+  {
+    this.answers.remove(answer.$key);
+    slidingItem.close();
+  }
 
 }
