@@ -53,6 +53,7 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
+    HomePage,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
