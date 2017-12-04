@@ -4,12 +4,13 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      QQQ
+      Q&A
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding id="page1">
+  <h1>Question</h1><br/>
   <ion-list id="qA-list2">
    
     <ion-item-sliding *ngFor="let question of questions | async">
@@ -19,4 +20,28 @@
       </ion-item>
     </ion-item-sliding>
   </ion-list>
+
+
+<h1>ADD Question</h1><br/>
+  <ion-list>
+    
+      <ion-item>
+        <ion-label >Question title</ion-label>
+        <ion-input type="title" [(ngModel)]="value1"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label >Question Content</ion-label>
+        <ion-textarea type="content" [(ngModel)]="value2"></ion-textarea>
+      </ion-item>
+</ion-list>
+
+  <ion-buttons end>
+    <button ion-button icon-left (click)="addQuestion()">
+      <ion-icon name="add"></ion-icon>+Question</button>
+   </ion-buttons>
+
+
+
+
 </ion-content>

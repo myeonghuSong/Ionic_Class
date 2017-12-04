@@ -6,6 +6,9 @@ import { answer } from './answerClass';
 import { Observable } from 'rxjs/Observable';
 import { road } from '../road';
 
+import { AlertController } from 'ionic-angular';
+import { NativeStorage } from '@ionic-native/native-storage';
+
 @Component({
   selector: 'page-answer',
   templateUrl: 'answer.html'
@@ -22,28 +25,48 @@ export class AnswerPage {
   value1 :any;
   value2 :any;
 
-  roomKey: String;
+  roomKey: string;
   questionKey: String;
   answerkey: string;
   test : any;
 
-  constructor(public navCtrl: NavController, public NavParams: NavParams, public af: AngularFireDatabase) {
-    this.test = NavParams.data;
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public NavParams: NavParams, public af: AngularFireDatabase, private nativeStorage: NativeStorage) {
+    /////////////////////////////
+   
+    //////////////////////////////
     
-    this.roomKey = "room1";
-    this.questions = af.list(this.roomKey+'/question'+this.test.$key);
+    this.test = NavParams.data;
+  
+    this.nativeStorage.getItem('room')
+    .then(
+      data => {this.answers = af.list(data.name+'/question/'+this.test.$key + '/answer'); console.log("TAEWOO " + data.name)},
+      error => console.error(error)
+    );
+    //this.roomKey = "room1";
+    console.log("TERRY  " + this.test);
+    
+    //this.questions = af.list(this.roomKey+'/question/'+this.test.$key);
     //this.questions = af.list(this.roomKey+'/question'+this.test.$key+'questionContent');
     
-    this.answers = af.list(this.roomKey+'/question/'+this.test.$key);
-    this.dabs = af.list(this.roomKey+'/question/'+this.test.$key);
+   // this.answers = af.list(this.roomKey+'/question/'+this.test.$key);
+    //this.dabs = af.list(this.roomKey+'/question/'+this.test.$key);
     console.log("TEST TEST TEST " + this.test.$key);
 
     console.log(this.answers);
+
+
+
   }
 
   addAnswer(){
+    let alert2 = this.alertCtrl.create({
+      title: 'SUCCESS',
+      buttons: ['OK']
+    });
+    
+    alert2.present();
     console.log("addAnswer");
-    this.dabs.push({answerTitle: this.value1, answerContent: this.value2 });
+    this.answers.push({answerTitle: this.value1, answerContent: this.value2 });
     
     
     //let theNewAnswer: string = prompt("New Answer");

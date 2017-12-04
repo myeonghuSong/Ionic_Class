@@ -10,6 +10,7 @@ import { HomePage } from '../pages/home/home';
 import { PoolingResultPage } from '../pages/pooling-result/pooling-result';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -51,6 +52,7 @@ export const firebaseConfig = {
     HomePage
   ],
   providers: [
+    NativeStorage ,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

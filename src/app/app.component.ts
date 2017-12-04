@@ -9,8 +9,8 @@ import { PoolingPage } from '../pages/pooling/pooling';
 import { PoolingResultPage } from '../pages/pooling-result/pooling-result';
 import { MainPage } from '../pages/main/main';
 
-
 import { QAPage } from '../pages/q-a/q-a';
+import { road } from '../pages/road';
 
 
 
@@ -21,27 +21,38 @@ export class MyApp {
   @ViewChild(Nav) navCtrl: Nav;
     rootPage:any = MainPage;
 
+  
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+    
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      
     });
   }
+  
+  
   goToQA(params){
-    if (!params) params = {};
+   
+    let road : road;
+    let abc : string;
     this.navCtrl.setRoot(QAPage);
-  }goToAnswer(params){
+  }
+  goToAnswer(params){
     if (!params) params = {};
     this.navCtrl.setRoot(AnswerPage);
-  }goToPooling(params){
+  }
+  goToPooling(params){
     if (!params) params = {};
     this.navCtrl.setRoot(PoolingPage);
-  }goToPoolingResult(params){
+  }
+  goToPoolingResult(params){
     if (!params) params = {};
     this.navCtrl.setRoot(PoolingResultPage);
-  }goToMain(params){
+  }
+  goToMain(params){
     if (!params) params = {};
     this.navCtrl.setRoot(MainPage);
   }

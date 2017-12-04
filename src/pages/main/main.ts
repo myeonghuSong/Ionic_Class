@@ -3,6 +3,9 @@ import { NavController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import { AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { road } from '../road';
+import { NativeStorage } from '@ionic-native/native-storage';
+
 @Component({
   selector: 'page-main',
   templateUrl: 'main.html'
@@ -15,8 +18,8 @@ export class MainPage {
   ranPw: string;
   roomName: any;
   room_Variable: any;
-  alert_flag: boolean = false;
-  constructor(public navCtrl: NavController, public af: AngularFireDatabase, public alertCtrl: AlertController) {
+  alert_flag: boolean;
+  constructor(public navCtrl: NavController, public af: AngularFireDatabase, public alertCtrl: AlertController,private nativeStorage: NativeStorage) {
 
     this.rooms = af.list('/');
     console.log(this.rooms);
@@ -71,7 +74,11 @@ export class MainPage {
   }
 
   joinRoom(params){
-
+    let alert2 = this.alertCtrl.create({
+      title: 'WRONG ROOM NUMBER',
+      subTitle: 'Check your room number correctly',
+      buttons: ['OK']
+    });
 //    this.navCtrl.setRoot(HomePage);
     //this.navCtrl.push(HomePage);//temporary
 
@@ -79,6 +86,10 @@ export class MainPage {
     console.log("VALUE IS " + this.value1);
     this.room_Variable = 0;
     let passwd: string = this.value1;
+
+    let road : road;
+    let name: string;
+    let name2: string;
 
     if(passwd!==null){
       console.log(passwd);
@@ -93,31 +104,81 @@ export class MainPage {
     //   })
     // })
 
-    this.rooms.forEach(room=>{
-      // if(this.ranPw==room.roomNumber){
-      //   console.log("CORRECT!");
-      // }
-      room.forEach(a=>{
-        if(passwd == a['roomNumber']){
-            console.log("CORRECT !!!!" + a['$key']);
-            this.navCtrl.setRoot(HomePage);
-            this.alert_flag = true;
-        }
-      })
-      //console.log('TEST : ', room[0]);
 
-    })
+    ///////////////////////////Taewoo////////////////////////
+    const promise = new Promise((resolve, reject)=>{
+      
+              this.rooms.forEach(room=>{
+                // if(this.ranPw==room.roomNumber){
+                //   console.log("CORRECT!");
+                // }
+                room.forEach(a=>{
+                  if(passwd == a['roomNumber']){
+                      console.log("CORRECT !!!!" + a['$key']);
+                      name = a['$key'];
+                      road = a['$key'];
+                      this.alert_flag = true;
+                      resolve(this.alert_flag);
+                      
+                      this.nativeStorage.setItem('room', {name: name})
+                      .then(
+                        () => this.navCtrl.setRoot(HomePage, {room_name: name, room_name2: a['roomName']}),
+                        error => console.error('Error storing item', error)
+                      );
+                      
+                      
+                  }else{
+                    this.alert_flag = false;
+                  }
+                })
+                //console.log('TEST : ', room[0]);
+          
+              })
+      
+              if(this.alert_flag==false){
+                console.log("MYUNG solution");
+                reject(this.alert_flag);          
+              }else{
+                console.log("ARE YOU ALIVE?");
+              }
+      
+          }).then(
+            (data) => {console.log("Log In");},
+            (err) => {
+              console.log("ERRORERROR");
+              alert2.present();
+            }
+          );
+    /////////////////////////////////////////////////////////
+
+
+    // this.rooms.forEach(room=>{
+    //   // if(this.ranPw==room.roomNumber){
+    //   //   console.log("CORRECT!");
+    //   // }
+    //   room.forEach(a=>{
+    //     if(passwd == a['roomNumber']){
+    //         console.log("CORRECT !!!!" + a['$key']);
+    //         name = a['$key'];
+    //         name2 = a['$key'];
+    //         road = a['$key'];
+    //         console.log("please", road);
+    //         this.alert_flag = true;
+    //         this.nativeStorage.setItem('room2', {name2: name2}).then();
+    //         this.nativeStorage.setItem('room', {name: name})
+    //         .then(
+    //           () => this.navCtrl.setRoot(HomePage, {room_name: name}),
+    //           error => console.error('Error storing item', error)
+    //         );
+            
+    //     }
+    //   })
+    //   //console.log('TEST : ', room[0]);
+
+    // })
 
     ////여기 아래로 비동기식이라 위에 forEach 도는 동안 얘가 먼저 시작 됨. promise 로 코딩 변경 필요함
-    if(this.alert_flag==false){
-      let alert2 = this.alertCtrl.create({
-        title: 'WRONG ROOM NUMBER',
-        subTitle: 'Check your room number correctly',
-        buttons: ['OK']
-      });
 
-      alert2.present();
-    }
 
   }
 

@@ -4,6 +4,8 @@ import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/databas
 import { pooling } from './poolingClass';
 import { Observable } from 'rxjs/Observable';
 import { PoolingResultPage } from '../pooling-result/pooling-result';
+import { NativeStorage } from '@ionic-native/native-storage';
+
 
 @Component({
   selector: 'page-pooling',
@@ -13,25 +15,32 @@ export class PoolingPage {
   poolings: FirebaseListObservable<any[]>;
   roomKey: String;
 
-  constructor(public navCtrl: NavController,  public af: AngularFireDatabase) {
-    this.roomKey = "room1";
-    this.poolings = af.list(this.roomKey +'/pooling');
+  constructor(public navCtrl: NavController,  public af: AngularFireDatabase, private nativeStorage: NativeStorage) {
+    
+    this.nativeStorage.getItem('room')
+    .then(
+      data => {this.poolings = af.list(data.name +'/pooling');},
+      error => console.error(error)
+    );
+    
+    //this.roomKey = "room1";
+    //this.poolings = af.list(this.roomKey +'/pooling');
     
     console.log(this.poolings);
   }
 
-  goToPoolingResult(poolings: any, params){
+  goToPoolingResult(pooling: any, params){
     
-    console.log("KEY VALUE IS ", poolings);
+    console.log("KEY VALUE IS ", pooling);
     
     if (!params) params = {};
-    this.navCtrl.push(PoolingResultPage, poolings);
+    this.navCtrl.push(PoolingResultPage, pooling);
 
   }
 
   addPooling(){
     console.log("ADD POOLING");
-    let test: string = prompt("HELLO WORLD");
+    let test: string = prompt("ADD Pooling");
     if(test !== null){
       this.poolings.push(
         {

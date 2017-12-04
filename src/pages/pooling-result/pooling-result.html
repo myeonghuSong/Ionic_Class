@@ -15,15 +15,17 @@
   <ion-list id="poolingResult-list6">
     <ion-item-sliding>
       <ion-item color="none" id="poolingResult-list-item25" (click) = "y_pooling(pooling_value)">
-        Yes {{pooling_value.yes}}
+        Yes
         <ion-note item-right></ion-note>
       </ion-item>
     </ion-item-sliding>
     <ion-item-sliding>
       <ion-item color="none" id="poolingResult-list-item26" (click) = "n_pooling(pooling_value)">
-        No {{pooling_value.no}}
+        No
         <ion-note item-right></ion-note>
       </ion-item>
     </ion-item-sliding>
   </ion-list>
+  <h1>Yes : </h1> {{pooling_value.yes}}
+  <h1>No : </h1> {{pooling_value.no}}
 </ion-content>
